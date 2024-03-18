@@ -32,7 +32,6 @@ const WeatherApp = () => {
 
     useEffect(() => {
         if (location) {
-            console.log(process.env.REACT_APP_GOOGLE_API_KEY)
             fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${location.lat},${location.lon}&sensor=true&key=${process.env.REACT_APP_GOOGLE_API_KEY}`)
             .then(response => response.json())
             .then(data => {
@@ -47,6 +46,10 @@ const WeatherApp = () => {
             setCity(null)
         }
     }, [ location ])
+
+    useEffect(() => {
+        getLocation()
+    }, [])
 
     return (
         <div id='weather'>
