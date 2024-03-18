@@ -55,27 +55,28 @@ const WeatherApp = ({ setTimeClass }) => {
             .then(data => {
                 setWeather(data)
                 const hour = 60 * 60
-                if (data.dt - hour >= data.sys.sunset || data.dt + hour < data.sys.sunrise) {
+                const time = data.dt - hour * 12
+                if (time - hour >= data.sys.sunset || time + hour < data.sys.sunrise) {
                     setTimeClass('night')
-                } else if (data.dt + hour >= data.sys.sunset) {
+                } else if (time + hour >= data.sys.sunset) {
                     setTimeClass('evening')
-                } else if (data.dt - hour >= data.sys.sunrise) {
+                } else if (time - hour >= data.sys.sunrise) {
                     setTimeClass(null)
-                } else if (data.dt + hour >= data.sys.sunrise) {
+                } else if (time + hour >= data.sys.sunrise) {
                     setTimeClass('morning')
                 }
             })
         }
-    }, [ location, setWeather ])
+    }, [ location, setWeather, setTimeClass ])
 
     useEffect(() => {
         getLocation()
     }, [ getLocation ])
 
     return (
-        <div id='weather'>
+        <div id='weather' className='p-10 max-w-xl md:px-10 md:py-8 backdrop-blur-xl w-full rounded-xl bg-white/90 text-black/90 shadow-2xl'>
             { !location && <p>Getting a location...</p> }
-            { city && <p>{ city }</p>}
+            { city && <h3 className='text-3xl'>{ city }</h3>}
             { weather &&
                 <p>
                     { Math.round(weather.main.temp) } °C<br/>
