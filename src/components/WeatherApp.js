@@ -4,6 +4,7 @@ const WeatherApp = () => {
 
     const [location, setLocation] = useState(null)
     const [city, setCity] = useState(null)
+    const [weather, setWeather] = useState(null)
 
     const getLocation = useCallback(() => {
         if (navigator.geolocation) {
@@ -45,7 +46,18 @@ const WeatherApp = () => {
         } else {
             setCity(null)
         }
-    }, [ location ])
+    }, [ location, setCity ])
+
+    useEffect(() => {
+        if (location) {
+            fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                setWeather(data)
+            })
+        }
+    }, [ location, setWeather ])
 
     useEffect(() => {
         getLocation()
@@ -55,6 +67,12 @@ const WeatherApp = () => {
         <div id='weather'>
             { !location && <p>Getting a location...</p> }
             { city && <p>{ city }</p>}
+            { weather &&
+                <p>
+                    { Math.round(weather.main.temp) } °C<br/>
+                    (feels like { Math.round(weather.main.feels_like) } °C)
+                </p>
+            }
             <button onClick={ getLocation }>Get loc</button>
         </div>
     )
