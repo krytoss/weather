@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 
 const WeatherApp = () => {
 
     const [location, setLocation] = useState(null)
     const [city, setCity] = useState(null)
 
-    const getLocation = () => {
+    const getLocation = useCallback(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 locationSuccess,
@@ -18,7 +18,7 @@ const WeatherApp = () => {
         } else {
             alert("Geolocation not supported")
         }
-    }
+    }, [])
 
     const locationSuccess = (pos) => {
         const lat = pos.coords.latitude
@@ -49,7 +49,7 @@ const WeatherApp = () => {
 
     useEffect(() => {
         getLocation()
-    }, [])
+    }, [ getLocation ])
 
     return (
         <div id='weather'>
