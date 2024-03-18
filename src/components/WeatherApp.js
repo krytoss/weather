@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react"
 
-const WeatherApp = () => {
+const WeatherApp = ({ setTimeClass }) => {
 
     const [location, setLocation] = useState(null)
     const [city, setCity] = useState(null)
@@ -53,8 +53,17 @@ const WeatherApp = () => {
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}&units=metric`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 setWeather(data)
+                const hour = 60 * 60
+                if (data.dt - hour >= data.sys.sunset || data.dt + hour < data.sys.sunrise) {
+                    setTimeClass('night')
+                } else if (data.dt + hour >= data.sys.sunset) {
+                    setTimeClass('evening')
+                } else if (data.dt - hour >= data.sys.sunrise) {
+                    setTimeClass(null)
+                } else if (data.dt + hour >= data.sys.sunrise) {
+                    setTimeClass('morning')
+                }
             })
         }
     }, [ location, setWeather ])

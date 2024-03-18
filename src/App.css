@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background: linear-gradient(to bottom, #90dffe 0%,#38a3d1 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -22,6 +22,18 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.App-header.morning {
+  background: linear-gradient(to bottom, #1e528e 0%,#728a7c 50%,#e9ce5d 100%);
+}
+
+.App-header.evening {
+  background: linear-gradient(to bottom, #2d91c2 0%,#1e528e 100%);
+}
+
+.App-header.night {
+  background: linear-gradient(to bottom, #20202c 0%,#515175 100%);
 }
 
 .App-link {
