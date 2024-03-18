@@ -55,7 +55,7 @@ const WeatherApp = ({ setTimeClass }) => {
             .then(data => {
                 setWeather(data)
                 const hour = 60 * 60
-                const time = data.dt - hour * 12
+                const time = data.dt
                 if (time - hour >= data.sys.sunset || time + hour < data.sys.sunrise) {
                     setTimeClass('night')
                 } else if (time + hour >= data.sys.sunset) {
