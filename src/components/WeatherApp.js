@@ -1,11 +1,11 @@
 import { useState, useEffect, useCallback } from "react"
 import Button from "./Button"
+import './WeatherApp.css'
 
-const WeatherApp = ({ setTimeClass }) => {
+const WeatherApp = ({ setTimeClass, weather, setWeather }) => {
 
     const [location, setLocation] = useState(null)
     const [city, setCity] = useState(null)
-    const [weather, setWeather] = useState(null)
 
     const getLocation = useCallback(() => {
         setLocation(null)
@@ -67,6 +67,7 @@ const WeatherApp = ({ setTimeClass }) => {
                 } else if (time + hour >= data.sys.sunrise) {
                     setTimeClass('morning')
                 }
+                console.log(data)
             })
         }
     }, [ location, setWeather, setTimeClass ])
