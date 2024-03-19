@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react"
+import Button from "./Button"
 
 const WeatherApp = ({ setTimeClass }) => {
 
@@ -7,6 +8,7 @@ const WeatherApp = ({ setTimeClass }) => {
     const [weather, setWeather] = useState(null)
 
     const getLocation = useCallback(() => {
+        setLocation(null)
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 locationSuccess,
@@ -75,6 +77,7 @@ const WeatherApp = ({ setTimeClass }) => {
 
     return (
         <div id='weather' className='p-10 max-w-xl md:px-10 md:py-8 backdrop-blur-xl w-full rounded-xl bg-white/90 text-black/90 shadow-2xl'>
+            <Button onClick={ getLocation } className='bg-white hover:bg-gray-100 text-gray-800 border-gray-400' value='Get location'/>
             { !location && <p>Getting a location...</p> }
             { city && <h3 className='text-3xl'>{ city }</h3>}
             { weather &&
@@ -83,7 +86,6 @@ const WeatherApp = ({ setTimeClass }) => {
                     (feels like { Math.round(weather.main.feels_like) } °C)
                 </p>
             }
-            <button onClick={ getLocation }>Get loc</button>
         </div>
     )
 }
