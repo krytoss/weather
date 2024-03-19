@@ -1,5 +1,6 @@
 import Rain from "./Rain"
 import Snow from "./Snow"
+import Sun from "./Sun"
 import './WeatherAnimation.css'
 
 const WeatherAnimation = ({ weather }) => {
@@ -12,6 +13,8 @@ const WeatherAnimation = ({ weather }) => {
                     return <Rain key={i} />
                 } else if (e.main === 'Snow') {
                     return <Snow key={i} />
+                } else if (e.main === "Clear") {
+                    return <Sun key={i} />
                 }
             }) }
         </div>
