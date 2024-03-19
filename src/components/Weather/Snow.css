@@ -1,0 +1,28 @@
+.snow {
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.7);
+    border-color: transparent;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 100%;
+    transform-origin: 100% 50%;
+    animation-name: snow;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes snow {
+    0% {
+        transform: translateX(30px);
+        top: 0;
+    }
+    50% {
+        transform: translateX(-20px);
+    }
+    100% {
+        transform: translateY(100px);
+        top: 100vh;
+    }
+}
