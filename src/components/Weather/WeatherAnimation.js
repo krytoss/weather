@@ -17,11 +17,13 @@ const WeatherAnimation = ({ weather }) => {
                 } else if (e.main === "Clear") {
                     return <Sun key={i} />
                 }
+                return <></>
             }) }
             {
                 (weather?.dt < weather?.sys.sunrise ||
                     weather?.dt > weather?.sys.sunset) ? <Moon /> : <Sun />
             }
+            <Snow />
         </div>
     )
 

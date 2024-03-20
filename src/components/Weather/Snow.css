@@ -7,13 +7,47 @@
     position: absolute;
     bottom: 100%;
     transform-origin: 100% 50%;
-    animation-name: snow;
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
+.snow.left {
+    animation-name: snow-left;
+}
+
+.snow.center {
+    animation-name: snow;
+}
+
+.snow.right {
+    animation-name: snow-right;
+}
+
+@keyframes snow-left {
+    0% {
+        transform: translateX(0px);
+        top: 0;
+    }
+    50% {
+        transform: translateX(20px);
+    }
+    100% {
+        transform: translateY(-100px);
+        top: 100vh;
+    }
+}
+
 @keyframes snow {
+    0% {
+        top: 0;
+    }
+    100% {
+        top: 100vh;
+    }
+}
+
+@keyframes snow-right {
     0% {
         transform: translateX(30px);
         top: 0;
