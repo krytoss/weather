@@ -14,14 +14,19 @@
 
 .snow.left {
     animation-name: snow-left;
+    opacity: .8;
 }
 
 .snow.center {
     animation-name: snow;
+    scale: 0.8;
+    opacity: .6;
 }
 
 .snow.right {
     animation-name: snow-right;
+    scale: 1.2;
+    opacity: 1;
 }
 
 @keyframes snow-left {

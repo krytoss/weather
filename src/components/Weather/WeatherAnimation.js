@@ -23,7 +23,6 @@ const WeatherAnimation = ({ weather }) => {
                 (weather?.dt < weather?.sys.sunrise ||
                     weather?.dt > weather?.sys.sunset) ? <Moon /> : <Sun />
             }
-            <Snow />
         </div>
     )
 
