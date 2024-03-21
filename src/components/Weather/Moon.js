@@ -3,7 +3,7 @@ import './Moon.css'
 const Moon = () => {
 
     return (
-        <img className='moon' src='./images/moon.png' />
+        <img alt='Moon' className='moon' src='./images/moon.png' />
     )
 
 }
