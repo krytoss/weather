@@ -1,7 +1,6 @@
 name: build-and-deploy
 on: push
 jobs:
-	# Build job
 	build:
 		runs-on: ubuntu-latest
 		steps:
@@ -20,7 +19,6 @@ jobs:
 			  with:
 				name: production-files
 				path: ./build
-	# Deploy job
 	deploy:
 		needs: build
 		runs-on: ubuntu-latest
