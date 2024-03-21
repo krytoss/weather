@@ -1,5 +1,8 @@
 name: build-and-deploy
 on: push
+env:
+  REACT_APP_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API }}
+  REACT_APP_OPEN_WEATHER_API_KEY: ${{ secrets.OPEN_WEATHER_API }}
 jobs:
   build:
     runs-on: ubuntu-latest
